@@ -1,13 +1,13 @@
-# Use official Tomcat 9 image
+# Use Tomcat 9
 FROM tomcat:9.0
 
-# Remove default webapps
+# Clean default Tomcat applications
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy WAR (correct name from your POM file)
-COPY target/microserviceecommerce.war /usr/local/tomcat/webapps/ROOT.war
+# Copy your raw JSP/Servlet project directly into Tomcat
+COPY src/main/webapp/ /usr/local/tomcat/webapps/ROOT/
 
-# Tomcat default port
+# Expose Tomcat default port
 EXPOSE 8080
 
 # Start Tomcat
