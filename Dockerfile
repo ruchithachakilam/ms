@@ -1,14 +1,14 @@
 # Use official Tomcat 9 image
 FROM tomcat:9.0
 
-# Remove default webapps (optional but cleaner)
+# Remove default webapps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy your built WAR into Tomcat’s webapps folder
-COPY target/ms.war /usr/local/tomcat/webapps/
+# Copy WAR (correct name from your POM file)
+COPY target/microserviceecommerce.war /usr/local/tomcat/webapps/ROOT.war
 
-# Expose port that your application listens on (7007 as you used)
-EXPOSE 7007
+# Tomcat default port
+EXPOSE 8080
 
-# Run Tomcat
+# Start Tomcat
 CMD ["catalina.sh", "run"]
